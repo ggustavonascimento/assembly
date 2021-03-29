@@ -1,0 +1,23 @@
+.data
+	vetor: .word -99, -1, 5, 4, 12, -33
+	       .word -7, -21, 15, 1, -6, -47
+	       
+	n1: .asciiz "n1: "
+.text
+	
+	la $t1, vetor # diz o offset do inicio do vetor
+	li $t0, 0     # int n1 = 0
+	li $t2, 51    # int n2 = 51;
+	
+	lw $s0, 36($t1)   #4 bytes x 9 = 36. Endereço de vetor[9] 
+	add $t0, $s0, $t2 #n1 = $t0 + n2;	
+	
+	#imprimindo string
+	la $a0, n1
+	li $v0, 4
+	syscall
+	
+	#imprimindo int
+	move $a0, $t0
+	li $v0, 1
+	syscall
